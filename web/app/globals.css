@@ -1,0 +1,30 @@
+@import "tailwindcss";
+
+:root {
+  --background: #f6f4ec;
+  --foreground: #171717;
+  --color-second: #e7c16b;
+}
+
+@font-face {
+  font-family: "Libertinus Mono";
+  src: url("/fonts/LibertinusMono-Regular.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Libertinus Mono";
+  src: url("/fonts/LibertinusMono-Bold.woff2") format("woff2");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: "Libertinus Mono", ui-monospace, SFMono-Regular, Menlo, Monaco,
+    Consolas, "Liberation Mono", "Courier New", monospace;
+}
