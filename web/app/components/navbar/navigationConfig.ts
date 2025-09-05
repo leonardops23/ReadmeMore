@@ -1,16 +1,16 @@
 import { PenTool } from 'lucide-react';
 
 export interface NavigationItem {
-  href: string;
+  href?: string;
   text: string;
   icon?: any;
+  component?: React.ReactNode;
 }
 
 export const navigationItems: NavigationItem[] = [
-  { href: "#", text: "Our story" },
+  { href: "#", text: "Nuesta historia" },
   { href: "#", text: "Membership" },
-  { href: "#", text: "Write", icon: PenTool },
-  { href: "#", text: "Sign in" },
+  { href: "#", text: "Escritores", icon: PenTool },
 ];
 
 export const navbarConfig = {

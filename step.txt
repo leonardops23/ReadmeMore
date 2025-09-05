@@ -1,0 +1,16 @@
+Arquitectura recomendada
+
+Backend: Django 5 + DRF, PostgreSQL, Redis (cache/colas), Celery
+(tareas), S3-compatible para media (MinIO en local, AWS S3 en prod).
+
+Frontend: Next.js 14+ (App Router), TypeScript, TailwindCSS + shadcn/ui,
+ISR/SSR, on-demand revalidation.
+
+Comunicación: REST JSON sobre HTTPS. Autenticación JWT en cookies
+HttpOnly (o Session + CSRF si prefieres), CORS estricto.
+
+Infra: Docker Compose en dev. En prod: Nginx (reverse proxy) +
+Gunicorn/Uvicorn para Django + Next.js (build estático/Node runtime si usas SSR),
+Postgres, Redis.
+
+Observabilidad: Sentry (errores), Prometheus/Grafana (métricas), logs estructurados.

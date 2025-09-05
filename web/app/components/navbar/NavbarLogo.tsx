@@ -1,17 +1,25 @@
+import Image from 'next/image';
 import React from 'react';
 
 interface NavbarLogoProps {
-  text?: string;
+  src: string;
   className?: string;
 }
 
 const NavbarLogo: React.FC<NavbarLogoProps> = ({ 
-  text = "Medium", 
-  className = "text-3xl font-bold text-gray-900 tracking-tight" 
+  src,
+  className,
 }) => {
   return (
     <div className="flex items-center">
-      <h1 className={className}>{text}</h1>
+      <Image
+        alt='logo-auris-bg-preview'
+        src={src}
+        width={100}
+        height={100}
+        className={className}
+        unoptimized
+      />
     </div>
   );
 };

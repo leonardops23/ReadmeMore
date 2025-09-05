@@ -5,6 +5,7 @@ import MobileNavigation from './MobileNavigation';
 import MobileMenuButton from './MobileMenuButton';
 import { navbarConfig } from './navigationConfig';
 
+
 interface NavbarProps {
   isMobileMenuOpen: boolean;
   setIsMobileMenuOpen: (open: boolean) => void;
@@ -19,8 +20,8 @@ const Navbar: React.FC<NavbarProps> = ({ isMobileMenuOpen, setIsMobileMenuOpen }
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
           <NavbarLogo 
-            text={navbarConfig.logo.text}
-            className={navbarConfig.logo.className}
+            src='/logo-auris-bg-preview.png'
+            className=''
           />
 
           {/* Desktop Navigation */}

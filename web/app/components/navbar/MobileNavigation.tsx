@@ -2,6 +2,9 @@ import React from 'react';
 import NavbarLink from './NavbarLink';
 import NavbarButton from './NavbarButton';
 import { navigationItems } from './navigationConfig';
+import SignUpModal from '../modals/SignUp';
+import LoginModal from '../modals/Login';
+
 
 interface MobileNavigationProps {
   isOpen: boolean;
@@ -15,7 +18,7 @@ const MobileNavigation: React.FC<MobileNavigationProps> = ({ isOpen }) => {
     <div className="md:hidden bg-[#F7F4ED] border-t border-gray-200">
       <div className="px-4 py-4 space-y-3">
         {navigationItems.map((item, index) => (
-          <NavbarLink 
+          <NavbarLink
             key={index}
             href={item.href} 
             icon={item.icon}
@@ -24,7 +27,8 @@ const MobileNavigation: React.FC<MobileNavigationProps> = ({ isOpen }) => {
             {item.text}
           </NavbarLink>
         ))}
-        <NavbarButton isMobile={true}>Get started</NavbarButton>
+        <LoginModal />
+        <SignUpModal />
       </div>
     </div>
   );
