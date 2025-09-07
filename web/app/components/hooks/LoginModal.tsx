@@ -17,7 +17,9 @@ const LoginModal: React.FC = () => {
           {/* Replace with your real login form */}
           <input className="border rounded px-3 py-2" placeholder="Email" />
           <input className="border rounded px-3 py-2" type="password" placeholder="Password" />
-          <button className="bg-gray-900 text-white px-4 py-2 rounded-full text-sm font-medium hover:bg-gray-800 transition-colors duration-200">Entrar</button>
+          <button className="bg-gray-900 text-white px-4 py-2 rounded-full text-sm font-medium hover:bg-gray-800 transition-colors duration-200">
+            Entrar
+          </button>
         </div>
       </DialogContent>
     </Dialog>
