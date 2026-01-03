@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1 class="text-uppercase text-warning">Category - {{ category.name }}</h1>
+<div class="row mb-2">
+  {% if posts %}
+    {% for featured_blog in posts %}
+    <div class="col-md-6">
+      <div class="card border-0">
+        <div class="card-body">
+          <h3>
+            <a href="{% url 'post_detail' slug=featured_blog.slug %}" class="text-dark">
+              {{ featured_blog.title }}
+            </a>
+          </h3>
+          <small class="mb-1 text-muted">
+            {{ featured_blog.created_at | date:"M d, Y" }} | {{
+            featured_blog.author }}</small
+          >
+          <p class="card-text">
+            {{ featured_blog.short_content | truncatewords:30 }}
+          </p>
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+  {% else %}
+    <p>No posts available in this category.</p>
+  {% endif %}
+</div>
+{% endblock content %}
