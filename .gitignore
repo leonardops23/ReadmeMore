@@ -30,6 +30,7 @@ ven
 .env.prod
 .env
 .env.example
+venv/
 
 # Python
 *.pyc
