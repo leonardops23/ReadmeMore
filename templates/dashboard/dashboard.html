@@ -1,0 +1,147 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Dashboard - Inicio{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
+<style>
+    .dashboard-container {
+        padding: 20px;
+        margin-left: 0;
+    }
+    .stat-card {
+        border-radius: 10px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s ease;
+        border: none;
+        margin-bottom: 20px;
+    }
+    .stat-card:hover {
+        transform: translateY(-5px);
+    }
+    .stat-icon {
+        font-size: 2.5rem;
+        opacity: 0.8;
+    }
+    .stat-number {
+        font-size: 1.8rem;
+        font-weight: bold;
+    }
+    .stat-title {
+        color: #6c757d;
+        font-size: 0.9rem;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+    }
+    .recent-activity {
+        background: white;
+        border-radius: 10px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        padding: 20px;
+        margin-top: 30px;
+    }
+    .activity-item {
+        padding: 10px 0;
+        border-bottom: 1px solid #eee;
+    }
+    .activity-item:last-child {
+        border-bottom: none;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="container-fluid">
+    <div class="row">
+        <!-- Sidebar -->
+        <div class="col-md-3 col-lg-2 d-md-block sidebar">
+            {% include 'dashboard/sidebar.html' %}
+        </div>
+
+        <!-- Main Content -->
+        <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+            <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+                <h1 class="h2">Panel de Control</h1>
+                <div class="btn-toolbar mb-2 mb-md-0">
+                    <div class="btn-group me-2">
+                        <button type="button" class="btn btn-sm btn-outline-secondary">Exportar</button>
+                        <button type="button" class="btn btn-sm btn-warning">
+                            <i class="bi bi-plus-circle"></i> Nuevo
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Stats Cards -->
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="card stat-card bg-primary text-white">
+                        <div class="card-body">
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div>
+                                    <h6 class="stat-title">Total de Publicaciones</h6>
+                                    <h2 class="stat-number mb-0">{{ post_count }}</h2>
+                                </div>
+                                <i class="bi bi-file-text stat-icon"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card stat-card bg-success text-white">
+                        <div class="card-body">
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div>
+                                    <h6 class="stat-title">Categorías</h6>
+                                    <h2 class="stat-number mb-0">{{ category_count }}</h2>
+                                </div>
+                                <i class="bi bi-tags stat-icon"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card stat-card bg-warning text-dark">
+                        <div class="card-body">
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div>
+                                    <h6 class="stat-title">Usuarios</h6>
+                                    <h2 class="stat-number mb-0">0</h2>
+                                </div>
+                                <i class="bi bi-people stat-icon"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Recent Activity -->
+            <div class="recent-activity mt-4">
+                <h5 class="mb-4"><i class="bi bi-clock-history me-2"></i>Actividad Reciente</h5>
+                <div class="activity-item">
+                    <div class="d-flex justify-content-between">
+                        <span><i class="bi bi-plus-circle text-success me-2"></i>Nueva publicación creada</span>
+                        <small class="text-muted">Hace 2 horas</small>
+                    </div>
+                    <small class="text-muted">Publicación: "Título de la publicación"</small>
+                </div>
+                <div class="activity-item">
+                    <div class="d-flex justify-content-between">
+                        <span><i class="bi bi-pencil-square text-primary me-2"></i>Publicación actualizada</span>
+                        <small class="text-muted">Ayer</small>
+                    </div>
+                    <small class="text-muted">Publicación: "Otra publicación"</small>
+                </div>
+                <div class="activity-item">
+                    <div class="d-flex justify-content-between">
+                        <span><i class="bi bi-trash text-danger me-2"></i>Publicación eliminada</span>
+                        <small class="text-muted">Hace 2 días</small>
+                    </div>
+                    <small class="text-muted">Publicación: "Publicación antigua"</small>
+                </div>
+            </div>
+        </main>
+    </div>
+</div>
+{% endblock %}

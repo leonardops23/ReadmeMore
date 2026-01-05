@@ -6,7 +6,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Django Blogs</title>
+    <title>{% block title %}ReadmeMore{% endblock %}</title>
     <link
       href="https://getbootstrap.com/docs/4.0/dist/css/bootstrap.min.css"
       rel="stylesheet"
@@ -34,11 +34,14 @@
           </div>
           <div class="col-4 d-flex justify-content-end align-items-center">
             {% if user.is_authenticated %}
-              <span class="mr-2">Hello, {{ user.username }}!</span>
-              <a class="btn btn-sm btn-outline-secondary" href="{% url 'logout' %}">Logout</a>
+                <span class="mr-2">Hello, {{ user.username }}!</span>
+                <a class="btn btn-sm btn-outline-warning me-2" href="{% url 'dashboard_index' %}">Dashboard</a>
+                <a class="btn btn-sm btn-outline-secondary me-2" href="{% url 'logout' %}">Logout</a>
             {% else %}
-            <a class="btn btn-sm btn-warning" href="{% url 'login' %}">Login</a> &nbsp;
-            <a class="btn btn-sm btn-outline-secondary" href="{% url 'register' %}">Register</a>
+            <div class="d-flex gap-2">
+              <a class="btn btn-sm btn-warning me-2" href="{% url 'login' %}">Login</a>
+              <a class="btn btn-sm btn-outline-secondary me-2" href="{% url 'register' %}">Register</a>
+            </div>
             {% endif %}
           </div>
         </div>

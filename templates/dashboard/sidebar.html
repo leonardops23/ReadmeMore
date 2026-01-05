@@ -1,0 +1,71 @@
+<div class="sidebar">
+  <div class="d-flex flex-column flex-shrink-0 p-3 bg-light" style="width: 280px; min-height: 100vh;">
+    <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-decoration-none">
+      <span class="fs-4">Dashboard</span>
+    </a>
+    <hr>
+    <ul class="nav nav-pills flex-column mb-auto">
+      <li class="nav-item">
+        <a href="{% url 'dashboard_index' %}" class="nav-link {% if request.path == '/dashboard/' %}active{% endif %}" aria-current="page">
+          <i class="bi bi-speedometer2 me-2"></i>
+          Inicio
+        </a>
+      </li>
+      <li>
+        <a href="{% url 'dashboard_categories' %}" class="nav-link {% if 'categories' in request.path %}active{% endif %}">
+          <i class="bi bi-tags me-2"></i>
+          Categorías
+        </a>
+      </li>
+      <li>
+        <a href="#" class="nav-link">
+          <i class="bi bi-file-text me-2"></i>
+          Publicaciones
+        </a>
+      </li>
+      <li>
+        <a href="#" class="nav-link">
+          <i class="bi bi-people me-2"></i>
+          Usuarios
+        </a>
+      </li>
+    </ul>
+    <hr>
+    <div class="dropdown">
+      <a href="#" class="d-flex align-items-center text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
+        <img src="https://github.com/mdo.png" alt="" width="32" height="32" class="rounded-circle me-2">
+        <strong>{{ user.username }}</strong>
+      </a>
+      <ul class="dropdown-menu dropdown-menu-dark text-small shadow" aria-labelledby="dropdownUser1">
+        <li><a class="dropdown-item" href="#">Perfil</a></li>
+        <li><a class="dropdown-item" href="#">Configuración</a></li>
+        <li><hr class="dropdown-divider"></li>
+        <li><a class="dropdown-item" href="{% url 'logout' %}">Cerrar sesión</a></li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<style>
+  .sidebar {
+    background-color: #f8f9fa;
+    box-shadow: 1px 0 5px rgba(0,0,0,0.1);
+  }
+  .nav-link {
+    border-radius: 5px;
+    margin: 2px 0;
+    color: #333;
+  }
+  .nav-link:hover {
+    background-color: #e9ecef;
+  }
+  .nav-link.active {
+    background-color: #ffc107;
+    color: #000;
+    font-weight: 500;
+  }
+  .bi {
+    width: 20px;
+    text-align: center;
+  }
+</style>
