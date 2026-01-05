@@ -19,13 +19,20 @@ from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
 from .views import home
-from blogs.views import post_detail
+from blogs import views as BlogViews
+from . import views
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', home, name='home'),
     path('categories/', include('blogs.urls')),
-    path('blogs/search/', post_detail, name='post_search'),
+    path('blogs/<slug:slug>/', BlogViews.post_detail, name='post_detail'),
+
+    path('search/', BlogViews.search_posts, name='post_search'),
+    path('register/', views.register, name='register'),
+    path('login/', views.login, name='login'),
+    path('logout/', views.logout_view, name='logout'),
 ]
 
 if settings.DEBUG:

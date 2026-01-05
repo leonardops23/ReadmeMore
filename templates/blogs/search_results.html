@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <div class="row">
+    <div class="col-md-12">
+      <h2>Search Results for "{{ keyword }}"</h2>
+      {% if result %}
+        {% for post in result %}
+          <div class="card mb-3">
+            <div class="card-body">
+              <h5 class="card-title">{{ post.title }}</h5>
+              <p class="card-text">{{ post.short_content }}</p>
+              <a href="{% url 'post_detail' slug=post.slug %}" class="btn btn-warning">Read More</a>
+            </div>
+          </div>
+        {% endfor %}
+      {% else %}
+        <p>No posts found matching your search criteria.</p>
+      {% endif %}
+    </div>
+  </div>
+{% endblock content %}
