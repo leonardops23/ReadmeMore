@@ -13,18 +13,22 @@
         box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
         margin-bottom: 20px;
     }
+
     .category-card:hover {
         transform: translateY(-5px);
         box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
     }
+
     .category-icon {
         font-size: 1.5rem;
         margin-right: 10px;
         color: #6c757d;
     }
+
     .action-buttons .btn {
         margin: 0 2px;
     }
+
     .table th {
         font-weight: 600;
         text-transform: uppercase;
@@ -44,13 +48,17 @@
 
         <!-- Main Content -->
         <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
-            <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+            <div
+                class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
                 <h1 class="h2">
                     <i class="bi bi-tags me-2"></i>Gestión de Categorías
                 </h1>
                 <div class="btn-toolbar mb-2 mb-md-0">
-                    <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#addCategoryModal">
-                        <i class="bi bi-plus-circle me-1"></i> Nueva Categoría
+                    <button type="button" class="btn btn-warning" data-bs-toggle="modal"
+                        data-bs-target="#addCategoryModal">
+                        <a href="{% url 'dashboard_add_category' %}">
+                            <i class="bi bi-plus-circle me-1"></i> Nueva Categoría
+                        </a>
                     </button>
                 </div>
             </div>
@@ -79,17 +87,19 @@
                                     <td><code>{{ category.slug }}</code></td>
                                     <td>
                                         {% if category.available %}
-                                            <span class="badge bg-success">Activa</span>
+                                        <span class="badge bg-success">Activa</span>
                                         {% else %}
-                                            <span class="badge bg-secondary">Inactiva</span>
+                                        <span class="badge bg-secondary">Inactiva</span>
                                         {% endif %}
                                     </td>
                                     <td>0</td>
                                     <td class="text-end action-buttons">
-                                        <button class="btn btn-sm btn-outline-primary" data-bs-toggle="tooltip" title="Editar">
+                                        <button class="btn btn-sm btn-outline-primary" data-bs-toggle="tooltip"
+                                            title="Editar">
                                             <i class="bi bi-pencil"></i>
                                         </button>
-                                        <button class="btn btn-sm btn-outline-danger" data-bs-toggle="tooltip" title="Eliminar">
+                                        <button class="btn btn-sm btn-outline-danger" data-bs-toggle="tooltip"
+                                            title="Eliminar">
                                             <i class="bi bi-trash"></i>
                                         </button>
                                     </td>
@@ -153,7 +163,7 @@
 
     // Confirmar antes de eliminar
     document.querySelectorAll('.btn-outline-danger').forEach(button => {
-        button.addEventListener('click', function(e) {
+        button.addEventListener('click', function (e) {
             if (!confirm('¿Estás seguro de que deseas eliminar esta categoría?')) {
                 e.preventDefault();
             }
