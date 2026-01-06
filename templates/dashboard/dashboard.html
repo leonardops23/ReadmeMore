@@ -1,147 +1,236 @@
-{% extends 'base.html' %}
-{% load static %}
+{% extends 'dashboard/base_dashboard.html' %}
 
-{% block title %}Dashboard - Inicio{% endblock %}
-
-{% block extra_css %}
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
-<style>
-    .dashboard-container {
-        padding: 20px;
-        margin-left: 0;
-    }
-    .stat-card {
-        border-radius: 10px;
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        transition: transform 0.3s ease;
-        border: none;
-        margin-bottom: 20px;
-    }
-    .stat-card:hover {
-        transform: translateY(-5px);
-    }
-    .stat-icon {
-        font-size: 2.5rem;
-        opacity: 0.8;
-    }
-    .stat-number {
-        font-size: 1.8rem;
-        font-weight: bold;
-    }
-    .stat-title {
-        color: #6c757d;
-        font-size: 0.9rem;
-        text-transform: uppercase;
-        letter-spacing: 1px;
-    }
-    .recent-activity {
-        background: white;
-        border-radius: 10px;
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        padding: 20px;
-        margin-top: 30px;
-    }
-    .activity-item {
-        padding: 10px 0;
-        border-bottom: 1px solid #eee;
-    }
-    .activity-item:last-child {
-        border-bottom: none;
-    }
-</style>
-{% endblock %}
+{% block title %}Resumen | Dashboard{% endblock %}
 
 {% block content %}
-<div class="container-fluid">
-    <div class="row">
-        <!-- Sidebar -->
-        <div class="col-md-3 col-lg-2 d-md-block sidebar">
-            {% include 'dashboard/sidebar.html' %}
+<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-4 border-bottom">
+    <h1 class="h2 fw-bold text-dark">Resumen General</h1>
+    <div class="btn-toolbar mb-2 mb-md-0">
+        <div class="btn-group me-2">
+            <button type="button" class="btn btn-sm btn-outline-secondary">Compartir</button>
+            <button type="button" class="btn btn-sm btn-outline-secondary">Exportar</button>
         </div>
-
-        <!-- Main Content -->
-        <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
-            <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-                <h1 class="h2">Panel de Control</h1>
-                <div class="btn-toolbar mb-2 mb-md-0">
-                    <div class="btn-group me-2">
-                        <button type="button" class="btn btn-sm btn-outline-secondary">Exportar</button>
-                        <button type="button" class="btn btn-sm btn-warning">
-                            <i class="bi bi-plus-circle"></i> Nuevo
-                        </button>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Stats Cards -->
-            <div class="row">
-                <div class="col-md-4">
-                    <div class="card stat-card bg-primary text-white">
-                        <div class="card-body">
-                            <div class="d-flex justify-content-between align-items-center">
-                                <div>
-                                    <h6 class="stat-title">Total de Publicaciones</h6>
-                                    <h2 class="stat-number mb-0">{{ post_count }}</h2>
-                                </div>
-                                <i class="bi bi-file-text stat-icon"></i>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="card stat-card bg-success text-white">
-                        <div class="card-body">
-                            <div class="d-flex justify-content-between align-items-center">
-                                <div>
-                                    <h6 class="stat-title">Categorías</h6>
-                                    <h2 class="stat-number mb-0">{{ category_count }}</h2>
-                                </div>
-                                <i class="bi bi-tags stat-icon"></i>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="card stat-card bg-warning text-dark">
-                        <div class="card-body">
-                            <div class="d-flex justify-content-between align-items-center">
-                                <div>
-                                    <h6 class="stat-title">Usuarios</h6>
-                                    <h2 class="stat-number mb-0">0</h2>
-                                </div>
-                                <i class="bi bi-people stat-icon"></i>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Recent Activity -->
-            <div class="recent-activity mt-4">
-                <h5 class="mb-4"><i class="bi bi-clock-history me-2"></i>Actividad Reciente</h5>
-                <div class="activity-item">
-                    <div class="d-flex justify-content-between">
-                        <span><i class="bi bi-plus-circle text-success me-2"></i>Nueva publicación creada</span>
-                        <small class="text-muted">Hace 2 horas</small>
-                    </div>
-                    <small class="text-muted">Publicación: "Título de la publicación"</small>
-                </div>
-                <div class="activity-item">
-                    <div class="d-flex justify-content-between">
-                        <span><i class="bi bi-pencil-square text-primary me-2"></i>Publicación actualizada</span>
-                        <small class="text-muted">Ayer</small>
-                    </div>
-                    <small class="text-muted">Publicación: "Otra publicación"</small>
-                </div>
-                <div class="activity-item">
-                    <div class="d-flex justify-content-between">
-                        <span><i class="bi bi-trash text-danger me-2"></i>Publicación eliminada</span>
-                        <small class="text-muted">Hace 2 días</small>
-                    </div>
-                    <small class="text-muted">Publicación: "Publicación antigua"</small>
-                </div>
-            </div>
-        </main>
+        <button type="button" class="btn btn-sm btn-outline-primary dropdown-toggle">
+            <i class="bi bi-calendar3 me-1"></i> Esta semana
+        </button>
     </div>
 </div>
+
+<div class="row g-4 mb-4">
+    <!-- Stat Card 1 -->
+    <div class="col-12 col-md-6 col-xl-3">
+        <div class="card-premium h-100 p-3">
+            <div class="d-flex justify-content-between align-items-center">
+                <div>
+                    <h6 class="text-muted text-uppercase small fw-bold mb-1">Posts Publicados</h6>
+                    <h3 class="mb-0 fw-bold text-dark">{{ post_count }}</h3>
+                </div>
+                <div class="icon-shape bg-indigo-100 text-primary p-3 rounded-3 bg-opacity-10"
+                    style="background-color: rgba(79, 70, 229, 0.1);">
+                    <i class="bi bi-file-text fs-3 text-primary"></i>
+                </div>
+            </div>
+            <div class="mt-3">
+                <span class="badge bg-success bg-opacity-10 text-success rounded-pill px-2 py-1">
+                    <i class="bi bi-arrow-up-short"></i> +12%
+                </span>
+                <span class="text-muted small ms-1">vs mes anterior</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Stat Card 2 -->
+    <div class="col-12 col-md-6 col-xl-3">
+        <div class="card-premium h-100 p-3">
+            <div class="d-flex justify-content-between align-items-center">
+                <div>
+                    <h6 class="text-muted text-uppercase small fw-bold mb-1">Categorías</h6>
+                    <h3 class="mb-0 fw-bold text-dark">{{ category_count }}</h3>
+                </div>
+                <div class="icon-shape bg-info bg-opacity-10 text-info p-3 rounded-3"
+                    style="background-color: rgba(13, 202, 240, 0.1);">
+                    <i class="bi bi-tags-fill fs-3 text-info"></i>
+                </div>
+            </div>
+            <div class="mt-3">
+                <span class="badge bg-danger bg-opacity-10 text-danger rounded-pill px-2 py-1">
+                    <i class="bi bi-arrow-down-short"></i> -2%
+                </span>
+                <span class="text-muted small ms-1">vs mes anterior</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Stat Card 3 -->
+    <div class="col-12 col-md-6 col-xl-3">
+        <div class="card-premium h-100 p-3">
+            <div class="d-flex justify-content-between align-items-center">
+                <div>
+                    <h6 class="text-muted text-uppercase small fw-bold mb-1">Usuarios Activos</h6>
+                    <h3 class="mb-0 fw-bold text-dark">2,300</h3>
+                </div>
+                <div class="icon-shape bg-warning bg-opacity-10 text-warning p-3 rounded-3"
+                    style="background-color: rgba(255, 193, 7, 0.1);">
+                    <i class="bi bi-people-fill fs-3 text-warning"></i>
+                </div>
+            </div>
+            <div class="mt-3">
+                <span class="badge bg-success bg-opacity-10 text-success rounded-pill px-2 py-1">
+                    <i class="bi bi-arrow-up-short"></i> +5%
+                </span>
+                <span class="text-muted small ms-1">vs semana pasada</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Stat Card 4 -->
+    <div class="col-12 col-md-6 col-xl-3">
+        <div class="card-premium h-100 p-3">
+            <div class="d-flex justify-content-between align-items-center">
+                <div>
+                    <h6 class="text-muted text-uppercase small fw-bold mb-1">Ingresos</h6>
+                    <h3 class="mb-0 fw-bold text-dark">$8,240</h3>
+                </div>
+                <div class="icon-shape bg-success bg-opacity-10 text-success p-3 rounded-3"
+                    style="background-color: rgba(25, 135, 84, 0.1);">
+                    <i class="bi bi-currency-dollar fs-3 text-success"></i>
+                </div>
+            </div>
+            <div class="mt-3">
+                <span class="badge bg-success bg-opacity-10 text-success rounded-pill px-2 py-1">
+                    <i class="bi bi-arrow-up-short"></i> +18%
+                </span>
+                <span class="text-muted small ms-1">vs mes anterior</span>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<!-- Charts & Lists -->
+<div class="row g-4">
+    <!-- Chart -->
+    <div class="col-12 col-lg-8">
+        <div class="card-premium h-100">
+            <div class="card-header bg-white border-0 py-3 rounded-top-4">
+                <h5 class="card-title mb-0 fw-bold">Rendimiento de Ventas</h5>
+            </div>
+            <div class="card-body">
+                <canvas id="myChart" width="400" height="200" style="max-height: 300px;"></canvas>
+            </div>
+        </div>
+    </div>
+
+    <!-- Recent Activity -->
+    <div class="col-12 col-lg-4">
+        <div class="card-premium h-100">
+            <div
+                class="card-header bg-white border-0 py-3 rounded-top-4 d-flex justify-content-between align-items-center">
+                <h5 class="card-title mb-0 fw-bold">Actividad Reciente</h5>
+                <a href="#" class="btn btn-sm btn-light rounded-pill">Ver todo</a>
+            </div>
+            <div class="list-group list-group-flush">
+                <a href="#"
+                    class="list-group-item list-group-item-action d-flex gap-3 py-3 border-0 align-items-center">
+                    <div class="rounded-circle bg-primary bg-opacity-10 p-2 d-flex align-items-center justify-content-center"
+                        style="width: 40px; height: 40px;">
+                        <i class="bi bi-bag text-primary"></i>
+                    </div>
+                    <div class="w-100">
+                        <div class="d-flex w-100 justify-content-between">
+                            <h6 class="mb-0 fw-semibold">Nueva orden #4202</h6>
+                            <small class="text-muted">2m</small>
+                        </div>
+                        <p class="mb-0 opacity-75 small">Carlos compró Plan Premium</p>
+                    </div>
+                </a>
+
+                <a href="#"
+                    class="list-group-item list-group-item-action d-flex gap-3 py-3 border-0 align-items-center">
+                    <div class="rounded-circle bg-warning bg-opacity-10 p-2 d-flex align-items-center justify-content-center"
+                        style="width: 40px; height: 40px;">
+                        <i class="bi bi-hdd-rack text-warning"></i>
+                    </div>
+                    <div class="w-100">
+                        <div class="d-flex w-100 justify-content-between">
+                            <h6 class="mb-0 fw-semibold">Servidor Reiniciado</h6>
+                            <small class="text-muted">1h</small>
+                        </div>
+                        <p class="mb-0 opacity-75 small">Mantenimiento automático completado</p>
+                    </div>
+                </a>
+
+                <a href="#"
+                    class="list-group-item list-group-item-action d-flex gap-3 py-3 border-0 align-items-center">
+                    <div class="rounded-circle bg-info bg-opacity-10 p-2 d-flex align-items-center justify-content-center"
+                        style="width: 40px; height: 40px;">
+                        <i class="bi bi-person-plus text-info"></i>
+                    </div>
+                    <div class="w-100">
+                        <div class="d-flex w-100 justify-content-between">
+                            <h6 class="mb-0 fw-semibold">Nuevo Registro</h6>
+                            <small class="text-muted">3h</small>
+                        </div>
+                        <p class="mb-0 opacity-75 small">Ana Maria se ha unido</p>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+    const ctx = document.getElementById('myChart');
+    new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: ['Lun', 'Mar', 'Mie', 'Jue', 'Vie', 'Sab', 'Dom'],
+            datasets: [{
+                label: 'Ventas ($)',
+                data: [1200, 1900, 1500, 2200, 2000, 3000, 3800],
+                borderColor: '#4f46e5',
+                backgroundColor: (context) => {
+                    const ctx = context.chart.ctx;
+                    const gradient = ctx.createLinearGradient(0, 0, 0, 400);
+                    gradient.addColorStop(0, 'rgba(79, 70, 229, 0.2)');
+                    gradient.addColorStop(1, 'rgba(79, 70, 229, 0)');
+                    return gradient;
+                },
+                tension: 0.4,
+                fill: true,
+                pointBackgroundColor: '#ffffff',
+                pointBorderColor: '#4f46e5',
+                pointBorderWidth: 2,
+                pointRadius: 4,
+                pointHoverRadius: 6
+            }]
+        },
+        options: {
+            plugins: {
+                legend: { display: false },
+                tooltip: {
+                    backgroundColor: '#111827',
+                    titleColor: '#fff',
+                    bodyColor: '#fff',
+                    padding: 10,
+                    cornerRadius: 8,
+                    displayColors: false
+                }
+            },
+            scales: {
+                y: {
+                    beginAtZero: true,
+                    grid: { borderDash: [2, 4], color: '#f3f4f6' },
+                    ticks: { color: '#9ca3af' }
+                },
+                x: {
+                    grid: { display: false },
+                    ticks: { color: '#9ca3af' }
+                }
+            },
+            maintainAspectRatio: false,
+        }
+    });
+</script>
 {% endblock %}

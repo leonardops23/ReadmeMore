@@ -1,14 +1,14 @@
 {% extends 'dashboard/base_dashboard.html' %}
 
-{% block title %}Categorías | Dashboard{% endblock %}
+{% block title %}Posts | Dashboard{% endblock %}
 
 {% block content %}
 <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-4 border-bottom">
-    <h1 class="h2 fw-bold text-dark">Categorías</h1>
+    <h1 class="h2 fw-bold text-dark">Posts</h1>
     <div class="btn-toolbar mb-2 mb-md-0">
-        <a href="{% url 'add_category' %}" class="btn btn-primary d-flex align-items-center gap-2">
+        <a href="{% url 'add_post' %}" class="btn btn-primary d-flex align-items-center gap-2">
             <i class="bi bi-plus-lg"></i>
-            Nueva Categoría
+            Nuevo Post
         </a>
     </div>
 </div>
@@ -17,8 +17,8 @@
     <div class="col-12 col-md-4">
         <div class="card-premium p-3 h-100 d-flex align-items-center justify-content-between">
             <div>
-                <h6 class="text-muted text-uppercase small fw-bold mb-1">Total Categorías</h6>
-                <h3 class="mb-0 fw-bold">{{ category_count }}</h3>
+                <h6 class="text-muted text-uppercase small fw-bold mb-1">Total Posts</h6>
+                <h3 class="mb-0 fw-bold">{{ post_count }}</h3>
             </div>
             <div class="icon-shape bg-primary bg-opacity-10 text-primary p-3 rounded-3">
                 <i class="bi bi-tags fs-3"></i>
@@ -41,27 +41,37 @@
 <!-- Category List in Card -->
 <div class="card-premium">
     <div class="card-header bg-white border-bottom py-3">
-        <h5 class="card-title mb-0 fw-bold">Listado de Categorías</h5>
+        <h5 class="card-title mb-0 fw-bold">Listado de Posts</h5>
     </div>
     <div class="table-responsive">
         <table class="table table-hover align-middle mb-0">
             <thead class="bg-light">
                 <tr>
-                    <th scope="col">Nombre</th>
-                    <th scope="col">Slug</th>
+                    <th scope="col">Titulo</th>
+                    <th scope="col">Categoria</th>
+                    <th scope="col">Status</th>
                     <th scope="col">Disponible</th>
                     <th scope="col" class="text-end pe-4">Acciones</th>
                 </tr>
             </thead>
             <tbody>
-                {% for category in categories %}
+                {% for post in posts %}
                 <tr>
                     <td>
-                        <span class="fw-semibold text-dark">{{ category.name }}</span>
+                        <span class="fw-semibold text-dark">
+                            {{ post.title | truncatechars:25 }}
+                        </span>
                     </td>
-                    <td><span class="badge bg-light text-secondary border">{{ category.slug }}</span></td>
+                    <td><span class="badge bg-light text-secondary border">{{ post.category.name }}</span></td>
                     <td>
-                        {% if category.available %}
+                        {% if post.status %}
+                        <span class="badge bg-success text-white">Publicado</span>
+                        {% else %}
+                        <span class="badge bg-danger text-white">No Publicado</span>
+                        {% endif %}
+                    </td>
+                    <td>
+                        {% if post.available %}
                         <span class="badge bg-success text-white">Disponible</span>
                         {% else %}
                         <span class="badge bg-danger text-white">No Disponible</span>
@@ -70,12 +80,12 @@
                     <td class="text-end pe-4">
                         <div class="btn-group">
                             <button type="button" class="btn btn-sm btn-light text-primary" title="Editar">
-                                <a href="{% url 'edit_category' category.id %}">
+                                <a href="#" class="text-decoration-none">
                                     <i class="bi bi-pencil-square"></i>
                                 </a>
                             </button>
                             <button type="button" class="btn btn-sm btn-light text-danger" title="Eliminar">
-                                <a href="{% url 'delete_category' category.id %}">
+                                <a href="#" class="text-decoration-none">
                                     <i class="bi bi-trash"></i>
                                 </a>
                             </button>
@@ -86,7 +96,7 @@
                 <tr>
                     <td colspan="4" class="text-center py-5 text-muted">
                         <i class="bi bi-inbox fs-1 d-block mb-3 opacity-25"></i>
-                        No hay categorías registradas
+                        No hay posts registrados
                     </td>
                 </tr>
                 {% endfor %}

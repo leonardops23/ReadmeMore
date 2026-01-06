@@ -1,0 +1,60 @@
+<nav class="navbar navbar-expand-lg top-navbar sticky-top px-4 py-3">
+    <div class="container-fluid">
+        <!-- Mobile Sidebar Toggle -->
+        <button class="navbar-toggler d-lg-none me-2 border-0" type="button" data-bs-toggle="collapse"
+            data-bs-target="#sidebarMenu">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <!-- Search Form -->
+        <form class="d-none d-md-flex me-auto position-relative">
+            <i class="bi bi-search position-absolute top-50 start-0 translate-middle-y ms-3 text-secondary"></i>
+            <input class="form-control ps-5 rounded-pill bg-light border-0" type="search" placeholder="Buscar..."
+                aria-label="Search" style="width: 250px;">
+        </form>
+
+        <div class="d-flex align-items-center gap-3">
+            <!-- Notifications -->
+            <div class="dropdown">
+                <a href="#" class="text-secondary p-2 position-relative" data-bs-toggle="dropdown">
+                    <i class="bi bi-bell fs-5"></i>
+                    <span
+                        class="position-absolute top-0 start-100 translate-middle p-1 bg-danger border border-light rounded-circle">
+                        <span class="visually-hidden">New alerts</span>
+                    </span>
+                </a>
+                <ul class="dropdown-menu dropdown-menu-end shadow-sm border-0 rounded-4 mt-2 p-2" style="width: 300px;">
+                    <li>
+                        <h6 class="dropdown-header text-uppercase small fw-bold">Notificaciones</h6>
+                    </li>
+                    <li><a class="dropdown-item rounded-2 small" href="#">Nueva venta reciente</a></li>
+                    <li><a class="dropdown-item rounded-2 small" href="#">Usuario registrado</a></li>
+                </ul>
+            </div>
+
+            <!-- User Menu -->
+            <div class="dropdown">
+                <a href="#" class="d-flex align-items-center text-dark text-decoration-none dropdown-toggle gap-2"
+                    data-bs-toggle="dropdown">
+                    <div class="bg-indigo-100 text-primary rounded-circle d-flex align-items-center justify-content-center fw-bold bg-opacity-10"
+                        style="width: 38px; height: 38px;">
+                        {{ user.username|make_list|first|upper }}
+                    </div>
+                    <div class="d-none d-md-block text-start">
+                        <div class="fw-bold small">{{ user.username }}</div>
+                        <div class="text-muted" style="font-size: 0.75rem;">Admin</div>
+                    </div>
+                </a>
+                <ul class="dropdown-menu dropdown-menu-end shadow border-0 rounded-4 mt-2">
+                    <li><a class="dropdown-item" href="#"><i class="bi bi-person me-2"></i> Perfil</a></li>
+                    <li><a class="dropdown-item" href="#"><i class="bi bi-gear me-2"></i> Configuración</a></li>
+                    <li>
+                        <hr class="dropdown-divider">
+                    </li>
+                    <li><a class="dropdown-item text-danger" href="{% url 'logout' %}"><i
+                                class="bi bi-box-arrow-right me-2"></i> Salir</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</nav>
