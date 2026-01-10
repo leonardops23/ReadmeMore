@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.utils.text import slugify
 
 class Category(models.Model):
     """
@@ -17,6 +18,11 @@ class Category(models.Model):
     available = models.BooleanField(default=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+
+    def save(self, *args, **kwars):
+        if not self.slug:
+            self.slug = slugify(self.name)
+        super().save(*args, **kwars)
 
     class Meta:
         ordering = ['name']
@@ -51,7 +57,7 @@ class BlogPost(models.Model):
     title = models.CharField(max_length=200)
     slug = models.SlugField(max_length=200, unique=True)
     author = models.ForeignKey(User, on_delete=models.CASCADE, related_name='blog_posts')
-    short_content = models.CharField(max_length=300, blank=True)
+    short_content = models.TextField(max_length=300, blank=True)
     content = models.TextField()
     featured_image = models.ImageField(upload_to='blog_images/', blank=True, null=True)
     category = models.ForeignKey(Category, on_delete=models.CASCADE, related_name='blog_posts')
@@ -59,6 +65,11 @@ class BlogPost(models.Model):
     is_featured = models.BooleanField(default=False)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+
+    def save(self, *args, **kwargs):
+        if not self.slug:
+            self.slug = slugify(self.title)
+        super().save(*args, **kwargs)
 
     class Meta:
         ordering = ['-created_at']

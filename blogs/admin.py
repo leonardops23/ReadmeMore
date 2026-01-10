@@ -15,6 +15,7 @@ class CategoryAdmin(admin.ModelAdmin):
     search_fields = ('name',)
     ordering = ('name',)
 
+
 class BlogPostAdmin(admin.ModelAdmin):
     """
     Admin interface for BlogPost model.

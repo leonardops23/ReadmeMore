@@ -1,5 +1,6 @@
 from blogs.models import Category, BlogPost
 from django import forms
+from django.contrib.auth.models import User
 
 class CategoryForm(forms.ModelForm):
     name = forms.CharField(max_length=100)
@@ -12,22 +13,26 @@ class CategoryForm(forms.ModelForm):
         self.fields['slug'].widget.attrs.update({'class': 'form-control'})
         self.fields['available'].widget.attrs.update({'class': 'form-check-input'})
 
-    def clean(self):
-        cleaned_data = super().clean()
-        name = cleaned_data.get('name')
-        slug = cleaned_data.get('slug')
-        if name and slug:
-            if Category.objects.filter(name=name, slug=slug).exists():
-                raise forms.ValidationError('Ya existe una categoría con el mismo nombre y slug.')
-
     class Meta:
         model = Category
         fields = ('name', 'slug', 'available',)
 
 
 class PostForm(forms.ModelForm):
+    author = forms.ModelChoiceField(queryset=User.objects.all(), widget=forms.Select(attrs={'class': 'form-control'}))
+
+    def __init__(self, *args, **kwargs):
+        super(PostForm, self).__init__(*args, **kwargs)
+        self.fields['title'].widget.attrs.update({'class': 'form-control'})
+        self.fields['category'].widget.attrs.update({'class': 'form-control'})
+        self.fields['author'].widget.attrs.update({'class': 'form-control'})
+        self.fields['short_content'].widget.attrs.update({'class': 'form-control'})
+        self.fields['content'].widget.attrs.update({'class': 'form-control'})
+        self.fields['featured_image'].widget.attrs.update({'class': 'form-control'})
+        self.fields['status'].widget.attrs.update({'class': 'form-control'})
+        self.fields['is_featured'].widget.attrs.update({'class': 'form-check-input'})
 
     class Meta:
         model = BlogPost
-        fields = '__all__'
+        fields = ('title', 'category', 'author', 'short_content', 'content', 'featured_image', 'status', 'is_featured',)
     
