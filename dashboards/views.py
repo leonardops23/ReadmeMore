@@ -24,7 +24,6 @@ def categories(request):
 
 @login_required(login_url='login')
 def add_category(request):
-    form = CategoryForm()
     if request.method == 'POST':
         form = CategoryForm(request.POST)
         if form.is_valid():
